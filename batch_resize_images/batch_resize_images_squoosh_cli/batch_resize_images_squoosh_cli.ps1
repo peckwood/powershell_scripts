@@ -39,16 +39,14 @@ Get-ChildItem "$photoFolder\*.jp*g" -Recurse | where Length -gt $minimumImageSiz
     }
     # only images with shortSide longer than 1350 will be compressed
     if($shortSide -gt 1350){
-        
-		if($ratio -eq 1.333){
+        if($ratio -eq 1.333){
             $targetHeight = 1350
             # if width is the short side
             if($shortSide -eq $img.Width){
                 squoosh-cli -s _squoosh -d $_.DirectoryName --resize '{\"enabled\":true,\"width\":1350,\"method\":\"lanczos3\",\"fitMethod\":\"stretch\",\"premultiply\":true,\"linearRGB\":true}' --mozjpeg '{"quality":75,"baseline":false,"arithmetic":false,"progressive":true,"optimize_coding":true,"smoothing":0,"color_space":3,"quant_table":3,"trellis_multipass":false,"trellis_opt_zero":false,"trellis_opt_table":false,"trellis_loops":1,"auto_subsample":true,"chroma_subsample":2,"separate_chroma_quality":false,"chroma_quality":75}' $_.Fullname
             }else{# if height is the short side
                 squoosh-cli -s _squoosh -d $_.DirectoryName --resize '{\"enabled\":true,\"height\":1350,\"method\":\"lanczos3\",\"fitMethod\":\"stretch\",\"premultiply\":true,\"linearRGB\":true}' --mozjpeg '{"quality":75,"baseline":false,"arithmetic":false,"progressive":true,"optimize_coding":true,"smoothing":0,"color_space":3,"quant_table":3,"trellis_multipass":false,"trellis_opt_zero":false,"trellis_opt_table":false,"trellis_loops":1,"auto_subsample":true,"chroma_subsample":2,"separate_chroma_quality":false,"chroma_quality":75}' $_.Fullname
-            }
-                    
+            }                    
 		}elseif($ratio -eq 1.778){
             if($shortSide -eq $img.Width){
                 squoosh-cli -s _squoosh -d $_.DirectoryName --resize '{\"enabled\":true,\"width\":1200,\"method\":\"lanczos3\",\"fitMethod\":\"stretch\",\"premultiply\":true,\"linearRGB\":true}' --mozjpeg '{"quality":75,"baseline":false,"arithmetic":false,"progressive":true,"optimize_coding":true,"smoothing":0,"color_space":3,"quant_table":3,"trellis_multipass":false,"trellis_opt_zero":false,"trellis_opt_table":false,"trellis_loops":1,"auto_subsample":true,"chroma_subsample":2,"separate_chroma_quality":false,"chroma_quality":75}' $_.Fullname
