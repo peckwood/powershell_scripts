@@ -1,0 +1,6 @@
+working in ps terminal:
+squoosh-cli --mozjpeg '{"quality":80}' 1.JPG
+squoosh-cli --mozjpeg '{"quality":80, "enabled":true}' 1.JP
+working in cygwin
+squoosh-cli --mozjpeg {"quality":80} 1.JPG
+squoosh-cli --resize '{"width":100,"enabled":true}' 1.JPG
