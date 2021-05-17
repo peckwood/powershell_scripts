@@ -11,11 +11,6 @@ filter Check-Not-In-Squoosh-List-Filter {
 
 	 	foreach ($squooshImage in $squooshImageList){
 	 		$squooshStrBaseName = $squooshImage.BaseName
-	 		if($_.basename -eq 'IMG_1221'){
-				Write-Host $nameWithSquoosh
-				Write-Host $squooshStrBaseName
-				Write-Host '========================='
-			}
 		 	if($nameWithSquoosh -eq $squooshStrBaseName){
 		 		$notMatch = 0
 		 		break
@@ -28,4 +23,4 @@ filter Check-Not-In-Squoosh-List-Filter {
 
 }
 
-Get-ChildItem "J:\photos\*.jp*g" -Recurse | where {$_ | Check-Not-In-Squoosh-List-Filter} | ForEach-Object{ $_.Fullname}
+Get-ChildItem "J:\photos\*.jp*g" -Recurse | where {$_ | Check-Not-In-Squoosh-List-Filter} | ForEach-Object{ Copy-Item  -Path $_.FullName -Destination "J:\photos_to_huawei_pad"}
